@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <title>Loading.js</title>
+        <meta name="description" content="Loading.js">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" type="text/css" href="index.css" />
+    </head>
+    <body>
+        <div class="loading-container">
+            <div class="loading-progressbar"></div>
+        </div>
+        
+        <script src="jquery-2.0.3.min.js"></script>
+        <script src="loading.js"></script>
+        <script>
+            $(function(){
+                $('.loading-container').loading();
+            });
+            
+        </script>
+    </body>
+</html>
