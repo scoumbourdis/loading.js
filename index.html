@@ -15,10 +15,10 @@
         <script src="jquery-2.0.3.min.js"></script>
         <script src="loading.js"></script>
         <script>
-            $(function(){
-                $('.loading-container').loading();
+            $('.loading-container').loading({
+                percent: 80,
+                progress_time: 1000
             });
-            
         </script>
     </body>
 </html>
