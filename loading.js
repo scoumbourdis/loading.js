@@ -3,11 +3,15 @@
     "use strict";
     $.fn.loading = function (options) {
         var progressBarWidth,
-            settings;
+            settings,
+            options_success,
+            after_success,
+            my_object = this;
         
         settings = $.extend({
             percent : 90,
-            duration : 2000
+            duration : 2000,
+            after_success : 500
         }, options);
         
         if (settings.percent < 0 || settings.percent > 100) {
@@ -15,18 +19,17 @@
         }
         
         if (typeof options !== 'undefined' && typeof options.ajax !== 'undefined') {
-            var options_success = options.ajax.success,
-                my_object = this;
+            options_success = options.ajax.success;
             
             options.ajax.success = function (result) {
                 
                 setTimeout(function () {
                     options_success(result);
-                }, 500);
+                }, settings.after_success);
                 
                 my_object.loading({
                     percent : 100,
-                    duration : 500
+                    duration : settings.after_success
                 });
             };
             
@@ -35,8 +38,10 @@
         
         progressBarWidth = settings.percent * this.width() / 100;
         
-        this.find('div').show().stop()
-            .animate({ width: progressBarWidth }, settings.duration);
+        this.each(function () {
+            $(this).find('div').show().stop()
+                .animate({ width: progressBarWidth }, settings.duration);
+        });
         
         return this;
     };
