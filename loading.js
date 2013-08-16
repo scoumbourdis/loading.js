@@ -6,7 +6,22 @@
             settings,
             options_success,
             after_success,
+            Loading,
+            loadingObject,
             my_object = this;
+    
+        Loading = function (progress_container) {
+            this.progress_container = progress_container;
+        };
+        
+        Loading.prototype.progress = function (progress_percentage, duration) {
+            var progressBarWidth = progress_percentage * this.progress_container.width() / 100;
+            
+            this.progress_container.find('div').show().stop().animate({ width: progressBarWidth }, duration);
+            
+        };
+        
+        loadingObject = new Loading($(this));
         
         settings = $.extend({
             percent : 90,
@@ -39,8 +54,7 @@
         progressBarWidth = settings.percent * this.width() / 100;
         
         this.each(function () {
-            $(this).find('div').show().stop()
-                .animate({ width: progressBarWidth }, settings.duration);
+            loadingObject.progress(settings.percent, settings.duration);
         });
         
         return this;
