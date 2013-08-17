@@ -7,9 +7,7 @@ var Loading;
     };
     
     Loading.prototype.progress = function (progress_percentage, duration) {
-        var progressBarWidth = progress_percentage * this.progress_container.width() / 100;
-        
-        this.progress_container.find('div').show().stop().animate({ width: progressBarWidth }, duration);
+        this.progress_container.find('div').show().stop().animate({ width: progress_percentage + '%' }, duration);
         
     };
 }());
