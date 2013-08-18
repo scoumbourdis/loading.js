@@ -1,10 +1,10 @@
 /*global $*/
 /*jslint sloppy: true*/
 
-$('.loading-container').loading({
+$('#ajax-loading').loading({
     percent : 90,
     duration : 2000,
-    after_success : 2000,
+    after_success : 1500,
     ajax: {
         url : 'test.html',
         success: function (result) {
@@ -12,3 +12,10 @@ $('.loading-container').loading({
         }
     }
 });
+
+$('#fake-loading').loading({
+    percent: 70,
+    duration: 3000
+});
+
+$('#simple-loading').loading();

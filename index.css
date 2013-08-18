@@ -10,3 +10,11 @@
     background: red;
     z-index:1;
 }
+
+.loading-progressbar.green{
+    background: green;
+}
+
+.loading-progressbar.blue{
+    background: blue;
+}

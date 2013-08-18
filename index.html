@@ -8,9 +8,17 @@
         <link rel="stylesheet" type="text/css" href="index.css" />
     </head>
     <body>
-        <div class="loading-container">
-            <div class="loading-progressbar"></div>
+        <div class="loading-container" id="fake-loading">
+            <div class="loading-progressbar red"></div>
         </div>
+        <br/>
+        <div class="loading-container" id="ajax-loading">
+            <div class="loading-progressbar green"></div>
+        </div> 
+        <br/>
+        <div class="loading-container" id="simple-loading">
+            <div class="loading-progressbar blue"></div>
+        </div>  
         
         <script src="jquery-2.0.3.min.js"></script>
         <script src="loading.js"></script>
