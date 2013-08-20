@@ -8,7 +8,9 @@ var Loading;
     };
     
     Loading.prototype.progress = function () {
-        this.progress_container.find('div').show().stop().animate({ width: this.options.percent + '%' }, this.options.duration);
+        this.progress_container.find('div').show().stop().animate({
+            width: this.options.percent + '%'
+        }, this.options.duration);
         
     };
     

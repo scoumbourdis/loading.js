@@ -2,8 +2,7 @@
 (function ($) {
     "use strict";
     $.fn.loading = function (options) {
-        var progressBarWidth,
-            settings,
+        var settings,
             options_success,
             after_success,
             loadingObject,
@@ -23,12 +22,8 @@
         }
         
         if (typeof options !== 'undefined' && typeof options.ajax !== 'undefined') {
-
-            
             loadingObject.ajaxProgress();
         }
-        
-        progressBarWidth = settings.percent * this.width() / 100;
         
         this.each(function () {
             loadingObject.progress();
