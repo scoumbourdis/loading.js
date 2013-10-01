@@ -2,9 +2,9 @@
 /*jslint sloppy: true*/
 
 $('#ajax-loading').loading({
-    percent : 90,
+    progress : 90,
     duration : 2000,
-    after_success : 1500,
+    duration_after_success : 1500,
     ajax: {
         url : 'test.html',
         success: function (result) {
@@ -14,7 +14,7 @@ $('#ajax-loading').loading({
 });
 
 $('#fake-loading').loading({
-    percent: 70,
+    progress: 70,
     duration: 3000
 });
 

@@ -37,10 +37,14 @@
     */
     Loading.prototype.progress = function () {
         this.progress_container.find('div').show().stop().animate({
-            width: this.options.percent + '%'
+            width: this.options.progress + '%'
         }, this.options.duration);
         
         return true;
+    };
+    
+    Loading.prototype.stop_progress = function () {
+        this.progress_container.find('div').show().stop();
     };
     
     /**
@@ -62,11 +66,11 @@
             
             setTimeout(function () {
                 options_success(result);
-            }, options.after_success);
+            }, options.duration_after_success);
             
             test = new Loading(progress_container, {
-                percent : 100,
-                duration : options.after_success
+                progress : 100,
+                duration : options.duration_after_success
             });
             
             test.progress();
@@ -81,21 +85,39 @@
     $.fn.loading = function (options) {
         var settings,
             options_success,
-            after_success,
+            duration_after_success,
             loadingObject,
+            fn_stop_progress,
             my_object = this;
         
+        fn_stop_progress = function () {
+            loadingObject.stop_progress();
+        };
+        
+        if (typeof options === 'string') {
+            this.fn_stop_progress();
+            return this;
+        }
+        
         settings = $.extend({
-            percent : 100,
+            progress : 100,
             duration : 2000,
-            after_success : 500,
-            after_loading : function () {}
+            step_duration: 100,
+            //returns true, false or an integer
+            progress_callback : function () {},
+            progress_every : 1000,
+            duration_after_success : 500,
+            duration_after_error : 0,
+            stop_progress_on_error : false,
+            stop_progress_on_success : false,
+            after_loading : function () {},
+            stop_progress : false
         }, options);
         
         loadingObject = new Loading($(this), settings);
         
-        if (settings.percent < 0 || settings.percent > 100) {
-            $.error("The percentage has to be a number between 0 and 100");
+        if (settings.progress < 0 || settings.progress > 100) {
+            $.error("The progress has to be a number between 0 and 100");
         }
         
         if (typeof options !== 'undefined' && typeof options.ajax !== 'undefined') {
