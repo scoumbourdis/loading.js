@@ -26,7 +26,26 @@
         * @type {Object}
         */
         this.progress_container = progress_container;
+        
+        /**
+        * My property description.  Like other pieces of your comment blocks, 
+        * this can span multiple lines.
+        * 
+        * @property progress_container
+        * @type {Object}
+        */
+        this.init = function () {
+            progress_container.addClass(Loading.CSS_CLASS_MAIN_CONTAINER);
+            
+            if (progress_container.children().length === 0) {
+                progress_container.html($('<div/>').addClass(Loading.CSS_CLASS_PROGRESS_BAR));
+            }
+        };
     };
+    
+    /** Loading class Constants */
+    Loading.CSS_CLASS_MAIN_CONTAINER = 'loading-container';
+    Loading.CSS_CLASS_PROGRESS_BAR = 'loading-progressbar';
     
     /**
     * My method description.  Like other pieces of your comment blocks, 
@@ -103,8 +122,7 @@
             progress : 100,
             duration : 2000,
             step_duration: 100,
-            //returns true, false or an integer
-            progress_callback : function () {},
+            progress_callback : function () {}, //returns true, false or an integer
             progress_every : 1000,
             duration_after_success : 500,
             duration_after_error : 0,
@@ -115,6 +133,8 @@
         }, options);
         
         loadingObject = new Loading($(this), settings);
+        
+        loadingObject.init();
         
         if (settings.progress < 0 || settings.progress > 100) {
             $.error("The progress has to be a number between 0 and 100");
